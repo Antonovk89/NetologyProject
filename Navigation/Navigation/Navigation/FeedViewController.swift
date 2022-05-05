@@ -8,7 +8,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    var post = Post(title: "Мой пост")
+    lazy var post = Post(title: "Мой пост")
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
