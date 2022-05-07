@@ -11,10 +11,7 @@ class NewTabBarController: UITabBarController {
     let feedVC = FeedViewController()
     let profileVC = ProfileViewController()
     
-   
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupControllers()
@@ -27,7 +24,6 @@ class NewTabBarController: UITabBarController {
         let feedNC = UINavigationController(rootViewController: feedVC)
         let profileNC = UINavigationController(rootViewController: profileVC)
         
-        
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.rectangle")
         profileVC.tabBarItem.title = "Профиль"
         profileVC.navigationItem.title = "Профиль"
@@ -35,9 +31,6 @@ class NewTabBarController: UITabBarController {
         feedVC.tabBarItem.image = UIImage(systemName: "newspaper.fill")
         feedVC.tabBarItem.title = "Лента"
         feedVC.navigationItem.title = "Лента"
-        
-     
-      
         
         viewControllers = [profileNC, feedNC]
     }
