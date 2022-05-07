@@ -21,11 +21,11 @@ class PostViewController: UIViewController {
     private func makeBarItem() {
         let barItem = UIBarButtonItem(title: "Информация", style: .plain, target: self, action: #selector(tapAction))
         navigationItem.rightBarButtonItem = barItem
-    }
+}
     @objc private func tapAction() {
         let vcInfo = InfoViewController()
         vcInfo.title = "Информация"
         present(vcInfo, animated: true)
     }
-    
+
 }
