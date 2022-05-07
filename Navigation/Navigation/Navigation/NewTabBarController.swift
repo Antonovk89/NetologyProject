@@ -11,6 +11,7 @@ class NewTabBarController: UITabBarController {
     let feedVC = FeedViewController()
     let profileVC = ProfileViewController()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupControllers()

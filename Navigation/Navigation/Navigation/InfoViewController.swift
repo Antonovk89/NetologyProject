@@ -8,7 +8,7 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
@@ -22,7 +22,7 @@ class InfoViewController: UIViewController {
         buttonInfo.layer.cornerRadius = 12
         buttonInfo.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         view.addSubview(buttonInfo)
-}
+    }
     @objc private func tapAction() {
         let vcInfoAlert = UIAlertController(title: "Вопрос проверяющему!", message: "Задание выполненно?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Да", style: .default) {_ -> Void in
@@ -36,6 +36,6 @@ class InfoViewController: UIViewController {
         vcInfoAlert.addAction(yesAction)
         vcInfoAlert.addAction(noAction)
         present(vcInfoAlert, animated: true, completion: nil)
-      
+        
     }
 }
