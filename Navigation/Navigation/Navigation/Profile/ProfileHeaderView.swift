@@ -80,7 +80,7 @@ class ProfileHeaderView: UIView {
         setupStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         setupStatusButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    let setupStatusButton:UIButton = {
+    private lazy var setupStatusButton:UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .blue
