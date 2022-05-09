@@ -15,8 +15,9 @@ class NewTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupControllers()
-        self.tabBar.unselectedItemTintColor = .black
-        self.tabBar.tintColor = .white
+        self.tabBar.unselectedItemTintColor = .lightGray
+        self.tabBar.tintColor = .blue
+        self.tabBar.backgroundColor = .white
     }
     
     private func setupControllers() {
