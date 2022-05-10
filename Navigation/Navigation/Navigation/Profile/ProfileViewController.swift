@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     }
     
     private lazy var monkeyJobButton : UIButton = {
-        let monkeyJobButton = UIButton()
+        lazy var monkeyJobButton = UIButton()
         return monkeyJobButton
     }()
 }
