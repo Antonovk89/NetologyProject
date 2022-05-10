@@ -16,7 +16,7 @@ class FeedViewController: UIViewController {
         
     }
     private func makeButton() {
-        let buttonPost = UIButton(frame:CGRect(x: 0, y: 0, width: 200, height: 40))
+        lazy var buttonPost = UIButton(frame:CGRect(x: 0, y: 0, width: 200, height: 40))
         buttonPost.center = view.center
         buttonPost.setTitle("Пост", for: .normal)
         buttonPost.backgroundColor = .gray
@@ -25,7 +25,7 @@ class FeedViewController: UIViewController {
         view.addSubview(buttonPost)
     }
     @objc private func tapAction() {
-        let vcPost = PostViewController()
+        lazy var vcPost = PostViewController()
         navigationController?.pushViewController(vcPost, animated: true)
         vcPost.titlePost = post.title
         

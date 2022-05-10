@@ -28,9 +28,9 @@ class ProfileHeaderView: UIView {
        imageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
     }
     
-    let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         
-        let view = UIImageView()
+        lazy var view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 3
@@ -48,8 +48,8 @@ class ProfileHeaderView: UIView {
         textName.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16).isActive = true
     }
     
-    let textName: UILabel = {
-        let textName = UILabel()
+    private lazy var textName: UILabel = {
+        lazy var textName = UILabel()
         textName.translatesAutoresizingMaskIntoConstraints = false
         textName.text = "Raoul Duke"
         textName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -65,7 +65,7 @@ class ProfileHeaderView: UIView {
         
     }
     
-    let textStatus: UITextField = {
+    private lazy var textStatus: UITextField = {
         lazy var textStatus = UITextField()
         textStatus.translatesAutoresizingMaskIntoConstraints = false
         textStatus.placeholder = "Waiting for something..."
@@ -81,7 +81,7 @@ class ProfileHeaderView: UIView {
         setupStatusButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     private lazy var setupStatusButton:UIButton = {
-        let button = UIButton()
+        lazy var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .blue
         button.layer.cornerRadius = 15

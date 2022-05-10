@@ -8,8 +8,8 @@
 import UIKit
 
 class NewTabBarController: UITabBarController {
-    let feedVC = FeedViewController()
-    let profileVC = ProfileViewController()
+    lazy var feedVC = FeedViewController()
+    lazy var profileVC = ProfileViewController()
     
 
     override func viewDidLoad() {
@@ -22,8 +22,8 @@ class NewTabBarController: UITabBarController {
     
     private func setupControllers() {
         
-        let feedNC = UINavigationController(rootViewController: feedVC)
-        let profileNC = UINavigationController(rootViewController: profileVC)
+        lazy var feedNC = UINavigationController(rootViewController: feedVC)
+        lazy var profileNC = UINavigationController(rootViewController: profileVC)
         
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.rectangle")
         profileVC.tabBarItem.title = "Профиль"

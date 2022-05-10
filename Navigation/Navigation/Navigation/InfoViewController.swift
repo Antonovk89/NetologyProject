@@ -15,7 +15,7 @@ class InfoViewController: UIViewController {
         makeButton()
     }
     private func makeButton() {
-        let buttonInfo = UIButton(frame:CGRect(x: 0, y: 0, width: 200, height: 40))
+        lazy var buttonInfo = UIButton(frame:CGRect(x: 0, y: 0, width: 200, height: 40))
         buttonInfo.center = view.center
         buttonInfo.setTitle("Информация", for: .normal)
         buttonInfo.backgroundColor = .gray
@@ -24,12 +24,12 @@ class InfoViewController: UIViewController {
         view.addSubview(buttonInfo)
     }
     @objc private func tapAction() {
-        let vcInfoAlert = UIAlertController(title: "Вопрос проверяющему!", message: "Задание выполненно?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Да", style: .default) {_ -> Void in
+        lazy var vcInfoAlert = UIAlertController(title: "Вопрос проверяющему!", message: "Задание выполненно?", preferredStyle: .alert)
+        lazy var yesAction = UIAlertAction(title: "Да", style: .default) {_ -> Void in
             print("Супер!!!")
             self.dismiss(animated: true)
         }
-        let noAction = UIAlertAction(title: "Нет", style: .destructive) {_ -> Void in
+        lazy var noAction = UIAlertAction(title: "Нет", style: .destructive) {_ -> Void in
             print("Что не так?")
             self.dismiss(animated: true)
         }
