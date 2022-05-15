@@ -9,7 +9,7 @@ import UIKit
 
 class NewTabBarController: UITabBarController {
     lazy var feedVC = FeedViewController()
-    lazy var profileVC = ProfileViewController()
+    lazy var profileVC = LogInViewController()
     
 
     override func viewDidLoad() {
