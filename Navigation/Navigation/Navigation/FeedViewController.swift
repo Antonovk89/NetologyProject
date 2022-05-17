@@ -8,7 +8,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    lazy var post = Post(title: "Мой пост")
+    lazy var post = "Мой пост"
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
@@ -27,7 +27,7 @@ class FeedViewController: UIViewController {
     @objc private func tapAction() {
         lazy var vcPost = PostViewController()
         navigationController?.pushViewController(vcPost, animated: true)
-        vcPost.titlePost = post.title
+        vcPost.titlePost = post
         
     }
 }

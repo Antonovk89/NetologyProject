@@ -19,6 +19,9 @@
 		388A05802822F8DA00D45057 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388A057F2822F8D900D45057 /* Post.swift */; };
 		388A05822822FF2900D45057 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388A05812822FF2900D45057 /* InfoViewController.swift */; };
 		38C62A5428246CB1002679C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C62A5328246CB0002679C6 /* SceneDelegate.swift */; };
+		38E36CD42832D44D006B852F /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E36CD32832D44C006B852F /* ProfileTableHederView.swift */; };
+		38E36CD62832E7DC006B852F /* CustomPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E36CD52832E7DC006B852F /* CustomPostTableViewCell.swift */; };
+		38F95EA92832F111002C9595 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95EA82832F111002C9595 /* UIView+Extension.swift */; };
 		38F9DEF82825AE5E0054E298 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F9DEF72825AE5E0054E298 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +40,9 @@
 		388A057F2822F8D900D45057 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		388A05812822FF2900D45057 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		38C62A5328246CB0002679C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		38E36CD32832D44C006B852F /* ProfileTableHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHederView.swift; sourceTree = "<group>"; };
+		38E36CD52832E7DC006B852F /* CustomPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPostTableViewCell.swift; sourceTree = "<group>"; };
+		38F95EA82832F111002C9595 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		38F9DEF72825AE5E0054E298 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +98,9 @@
 				3871A0F92821AD4400A669EA /* ProfileViewController.swift */,
 				38F9DEF72825AE5E0054E298 /* ProfileHeaderView.swift */,
 				386AEB45283034F300E62C3E /* LogInViewController.swift */,
+				38E36CD32832D44C006B852F /* ProfileTableHederView.swift */,
+				38E36CD52832E7DC006B852F /* CustomPostTableViewCell.swift */,
+				38F95EA82832F111002C9595 /* UIView+Extension.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -173,9 +182,12 @@
 				3871A0FA2821AD4400A669EA /* ProfileViewController.swift in Sources */,
 				386AEB44283033A300E62C3E /* ColorSet.swift in Sources */,
 				3871A0F82821AD1B00A669EA /* FeedViewController.swift in Sources */,
+				38E36CD62832E7DC006B852F /* CustomPostTableViewCell.swift in Sources */,
+				38F95EA92832F111002C9595 /* UIView+Extension.swift in Sources */,
 				388A05802822F8DA00D45057 /* Post.swift in Sources */,
 				38F9DEF82825AE5E0054E298 /* ProfileHeaderView.swift in Sources */,
 				388A05822822FF2900D45057 /* InfoViewController.swift in Sources */,
+				38E36CD42832D44D006B852F /* ProfileTableHederView.swift in Sources */,
 				3871A0E228214F6800A669EA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

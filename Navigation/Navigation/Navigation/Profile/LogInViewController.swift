@@ -10,7 +10,7 @@ import UIKit
 class LogInViewController: UIViewController {
     
     private let nc = NotificationCenter.default
-
+    
     override func viewDidLoad(){
         self.navigationController?.navigationBar.isHidden = true
         setupScrollView()
