@@ -12,3 +12,9 @@ extension UIView {
         return String(describing: self)
     }
 }
+
+extension UICollectionViewCell {
+    static var id: String {
+        return String(describing: self)
+    }
+}
