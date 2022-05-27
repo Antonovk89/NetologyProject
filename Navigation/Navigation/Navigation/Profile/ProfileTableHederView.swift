@@ -81,9 +81,12 @@ class ProfileHeaderView: UIView {
         return button
     }()
     @objc func buttonPressed() {
-        print((textStatus.text)!)
+        if textStatus.text == "" {
+            textStatus.shake()
+        } else {
+            print((textStatus.text)!)
+        }
     }
-    
     private lazy var closeButton:UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false

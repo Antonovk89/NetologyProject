@@ -8,6 +8,7 @@
 import UIKit
 
 class CustomPostTableViewCell: UITableViewCell {
+    var postDelegate: CustomPostTableViewCellDelegate?
     
     private lazy var postView: UIView = {
         let view = UIView()
@@ -29,6 +30,7 @@ class CustomPostTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -41,25 +43,56 @@ class CustomPostTableViewCell: UITableViewCell {
         return postDescription
     }()
     
+    private lazy var countOfViews: UILabel = {
+        let count = UILabel()
+        count.translatesAutoresizingMaskIntoConstraints = false
+        count.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        count.textColor = .black
+        count.isUserInteractionEnabled = true
+        count.text = "0"
+        return count
+    }()
+    
     private lazy var postViewsLabel: UILabel = {
         let postViews = UILabel()
         postViews.translatesAutoresizingMaskIntoConstraints = false
         postViews.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         postViews.textColor = .black
+        postViews.isUserInteractionEnabled = true
         return postViews
     }()
     
-    private lazy var postLikesLabel: UILabel = {
+    lazy var postLikesLabel: UILabel = {
         let postLikes = UILabel()
         postLikes.translatesAutoresizingMaskIntoConstraints = false
         postLikes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         postLikes.textColor = .black
+        postLikes.isUserInteractionEnabled = true
         return postLikes
     }()
+    
+    private func setupGestures() {
+        let tapLikesGesture = UITapGestureRecognizer(target: self, action: #selector(tapLikesAction))
+        postLikesLabel.addGestureRecognizer(tapLikesGesture)
+        
+        let tapViewGesture = UITapGestureRecognizer(target: self, action: #selector(tapViewsAction))
+        postImageView.addGestureRecognizer(tapViewGesture)
+    }
+    
+    @objc func tapLikesAction(){
+        postLikesLabel.text = postDelegate?.addLikes(likesInLabel: postLikesLabel.text ?? "0")
+        print("Tap1231")
+    }
+    
+    @objc func tapViewsAction(){
+        print("tapView")
+        countOfViews.text = postDelegate?.showPhoto(viewsInLabel: countOfViews.text ?? "0", postImage: postImageView, postDescription: postDescriptionLabel)
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
+        setupGestures()
     }
     
     required init?(coder: NSCoder) {
@@ -70,7 +103,7 @@ class CustomPostTableViewCell: UITableViewCell {
         postAuthorLabel.text = post.author
         postImageView.image = post.image
         postDescriptionLabel.text = post.description
-        postViewsLabel.text = "Views: \(post.views)"
+        postViewsLabel.text = "Views: "
         postLikesLabel.text = "Likes: \(post.likes)"
         
     }
@@ -80,7 +113,7 @@ class CustomPostTableViewCell: UITableViewCell {
             return UIScreen.main.bounds.width
             
         }
-        [postView, postAuthorLabel, postImageView, postDescriptionLabel, postViewsLabel, postLikesLabel].forEach {contentView.addSubview($0)}
+        [postView, postAuthorLabel, postImageView, postDescriptionLabel, countOfViews, postViewsLabel, postLikesLabel].forEach {contentView.addSubview($0)}
         NSLayoutConstraint.activate([
             postView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
             postView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -111,8 +144,13 @@ class CustomPostTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             postViewsLabel.topAnchor.constraint(equalTo: postDescriptionLabel.bottomAnchor, constant: 16),
-            postViewsLabel.trailingAnchor.constraint(equalTo: postView.trailingAnchor, constant: -16),
+            postViewsLabel.trailingAnchor.constraint(equalTo: countOfViews.leadingAnchor),
             postViewsLabel.bottomAnchor.constraint(equalTo: postView.bottomAnchor, constant: -16)
+        ])
+        NSLayoutConstraint.activate([
+            countOfViews.topAnchor.constraint(equalTo: postDescriptionLabel.bottomAnchor, constant: 16),
+            countOfViews.trailingAnchor.constraint(equalTo: postView.trailingAnchor, constant: -16),
+            countOfViews.bottomAnchor.constraint(equalTo: postView.bottomAnchor, constant: -16)
         ])
         
         NSLayoutConstraint.activate([
@@ -122,3 +160,4 @@ class CustomPostTableViewCell: UITableViewCell {
         ])
     }
 }
+

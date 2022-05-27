@@ -17,10 +17,10 @@ struct Post {
     
     static func makePost() -> [Post] {
         var post = [Post]()
-        post.append(Post(author: "Raoul Duke", description: " Мы были уже на краю пустыни, когда нас начало накрывать…", image: UIImage(named: "tompson-")!, likes: 150, views: 200))
-        post.append(Post(author: "Raoul Duke", description: "За рулём мой адвокат, а не какой-нибудь козёл с дороги!", image: UIImage(named: "images")!, likes: 200, views: 300))
-        post.append(Post(author: "Raoul Duke", description: "Это был неподходящий город. Угрожающие вибрации шли со всех сторон.", image: UIImage(named: "85a18facae654d1196528c1a7d92")!, likes: 230, views: 230))
-        post.append(Post(author: "Oscar Acosta", description: "Как адвокат, советую купить мотоцикл, иначе материал не будет правдивым.", image: UIImage(named: "5")!, likes: 1000, views: 700))
+        post.append(Post(author: "Raoul Duke", description: " Мы были уже на краю пустыни, когда нас начало накрывать…", image: UIImage(named: "tompson-")!, likes: 0, views: 200))
+        post.append(Post(author: "Raoul Duke", description: "За рулём мой адвокат, а не какой-нибудь козёл с дороги!", image: UIImage(named: "images")!, likes: 0, views: 300))
+        post.append(Post(author: "Raoul Duke", description: "Это был неподходящий город. Угрожающие вибрации шли со всех сторон.", image: UIImage(named: "85a18facae654d1196528c1a7d92")!, likes: 0, views: 230))
+        post.append(Post(author: "Oscar Acosta", description: "Как адвокат, советую купить мотоцикл, иначе материал не будет правдивым.", image: UIImage(named: "5")!, likes: 0,  views: 700))
         return post
     }
 }

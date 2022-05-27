@@ -9,42 +9,11 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    private let minLength = 8
+    private lazy var regex = "(?=.*[0-9]){\(minLength),}$"
+    private let login = "89111111111"
+    private let password = "00000000"
     private let nc = NotificationCenter.default
-    
-    override func viewDidLoad(){
-        self.navigationController?.navigationBar.isHidden = true
-        setupScrollView()
-        setupContentView()
-        setupLogo()
-        setupStackView()
-        setupLoginButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        nc.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        nc.addObserver(self, selector: #selector(kbdHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    
-    @objc func kbdShow(notification: NSNotification) {
-        if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
-                          NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = kbdSize.height
-            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbdSize.height, right: 0)
-        }
-    }
-    
-    @objc func kbdHide() {
-        scrollView.contentInset = .zero
-        scrollView.verticalScrollIndicatorInsets = .zero
-    }
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -113,10 +82,7 @@ class LogInViewController: UIViewController {
         return stackViewLogPass
     }()
     
-    @objc private func tapAction() {
-        lazy var profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
-    }
+    
     
     lazy var logInButton:UIButton = {
         let loginButton = UIButton()
@@ -126,6 +92,60 @@ class LogInViewController: UIViewController {
         loginButton.setTitle("Log in", for: .normal)
         return loginButton
     }()
+    
+    lazy var messageLabel:UILabel = {
+       let lable = UILabel()
+        lable.translatesAutoresizingMaskIntoConstraints = false
+        lable.numberOfLines = 0
+        return lable
+    }()
+    
+    override func viewDidLoad(){
+        self.navigationController?.navigationBar.isHidden = true
+        setupScrollView()
+        setupContentView()
+        setupLogo()
+        setupStackView()
+        setupLoginButton()
+        setupMessageLabel()
+        passwordVk.delegate = self
+    }
+    private func checkValidation(password: String) {
+        if password.count < minLength  {
+            messageLabel.text = "Слишком короткий пароль!"
+        } else {
+            messageLabel.text = ""
+            return
+        }
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nc.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.addObserver(self, selector: #selector(kbdHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    @objc func kbdShow(notification: NSNotification) {
+        if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
+                          NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = kbdSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbdSize.height, right: 0)
+        }
+    }
+    
+    @objc func kbdHide() {
+        scrollView.contentInset = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
+    }
+    
     
     func setupScrollView() {
         view.addSubview(scrollView)
@@ -182,18 +202,85 @@ class LogInViewController: UIViewController {
         contentView.addSubview(logInButton)
         logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
         logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        logInButton.topAnchor.constraint(equalTo: stackViewLogPass.bottomAnchor, constant: 16).isActive = true
         logInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         logInButton.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
+    }
+    
+    @objc private func tapAction() {
+        lazy var profileVC = ProfileViewController()
+        if loginVk.text == "" || passwordVk.text == "" {
+            loginVk.text == "" ? loginVk.self.shake() : nil
+            passwordVk.text == "" ? passwordVk.self.shake() : nil
+        } else {
+            loginVk.text == login && passwordVk.text == password ? navigationController?.pushViewController(profileVC, animated: true) : logPassAlert()
+        }
+    }
+        func logPassAlert() {
+            lazy var validationAlert = UIAlertController(title: "Не правильный логин или пароль!", message: nil, preferredStyle: .alert)
+            lazy var okAction = UIAlertAction(title: "Ok", style: .default) {_ -> Void in
+                self.dismiss(animated: true)
+            }
+            validationAlert.addAction(okAction)
+            present(validationAlert, animated: true, completion: nil)
+        }
+        
+        func redTextField() {
+           loginVk.textColor = .red
+            passwordVk.textColor = .red
+        }
+
+
+    func setupMessageLabel() {
+        contentView.addSubview(messageLabel)
+        messageLabel.topAnchor.constraint(equalTo: stackViewLogPass.bottomAnchor, constant: 2).isActive = true
+        messageLabel.bottomAnchor.constraint(equalTo: logInButton.topAnchor, constant: 2).isActive = true
+        messageLabel.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor).isActive = true
+        messageLabel.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor).isActive = true
+        messageLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
     }
 }
 
 // MARK: - UITextFieldDelegate
 
 extension LogInViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (passwordVk.text ?? "") + string
+        let res: String
+
+        if range.length == 1 {
+            let end = text.index(text.startIndex, offsetBy: text.count - 1)
+            res = String(text[text.startIndex..<end])
+        } else {
+            res = text
+        }
+        checkValidation(password: res )
+        passwordVk.text = res
+        return false
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
+    }
+}
+extension String {
+    func matches (_ regex: String) -> Bool {
+        return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
+    }
+}
+
+public extension UIView {
+
+    func shake(count : Float = 4,for duration : TimeInterval = 0.5,withTranslation translation : Float = 5) {
+
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.repeatCount = count
+        animation.duration = duration/TimeInterval(animation.repeatCount)
+        animation.autoreverses = true
+        animation.values = [translation, -translation]
+        layer.add(animation, forKey: "shake")
     }
 }

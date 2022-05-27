@@ -23,6 +23,8 @@
 		38C62A5428246CB1002679C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C62A5328246CB0002679C6 /* SceneDelegate.swift */; };
 		38E36CD42832D44D006B852F /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E36CD32832D44C006B852F /* ProfileTableHederView.swift */; };
 		38E36CD62832E7DC006B852F /* CustomPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E36CD52832E7DC006B852F /* CustomPostTableViewCell.swift */; };
+		38F6AA5E284152FC00EB3B63 /* DetailedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F6AA5D284152FC00EB3B63 /* DetailedPostViewController.swift */; };
+		38F6AA6028415A3100EB3B63 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F6AA5F28415A3100EB3B63 /* ColorSet.swift */; };
 		38F95EA92832F111002C9595 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95EA82832F111002C9595 /* UIView+Extension.swift */; };
 		38F9DEF82825AE5E0054E298 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F9DEF72825AE5E0054E298 /* ProfileHeaderView.swift */; };
 		38FD3CB828384FF200406845 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FD3CB728384FF200406845 /* PhotosViewController.swift */; };
@@ -48,6 +50,8 @@
 		38C62A5328246CB0002679C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		38E36CD32832D44C006B852F /* ProfileTableHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHederView.swift; sourceTree = "<group>"; };
 		38E36CD52832E7DC006B852F /* CustomPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPostTableViewCell.swift; sourceTree = "<group>"; };
+		38F6AA5D284152FC00EB3B63 /* DetailedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostViewController.swift; sourceTree = "<group>"; };
+		38F6AA5F28415A3100EB3B63 /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		38F95EA82832F111002C9595 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		38F9DEF72825AE5E0054E298 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		38FD3CB728384FF200406845 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				38E36CD52832E7DC006B852F /* CustomPostTableViewCell.swift */,
+				38F6AA5D284152FC00EB3B63 /* DetailedPostViewController.swift */,
 				383AA76E283825E10039DB16 /* PhotosTableViewCell.swift */,
 				38FD3CB92838587400406845 /* PhotosCollectionViewCell.swift */,
 			);
@@ -80,6 +85,7 @@
 			children = (
 				388A057F2822F8D900D45057 /* Post.swift */,
 				383AA76A283822550039DB16 /* Photos.swift */,
+				38F6AA5F28415A3100EB3B63 /* ColorSet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,9 +213,11 @@
 				38FD3CB828384FF200406845 /* PhotosViewController.swift in Sources */,
 				38C62A5428246CB1002679C6 /* SceneDelegate.swift in Sources */,
 				386AEB46283034F300E62C3E /* LogInViewController.swift in Sources */,
+				38F6AA6028415A3100EB3B63 /* ColorSet.swift in Sources */,
 				383AA76B283822550039DB16 /* Photos.swift in Sources */,
 				383AA76F283825E10039DB16 /* PhotosTableViewCell.swift in Sources */,
 				3871A0F62821535D00A669EA /* NewTabBarController.swift in Sources */,
+				38F6AA5E284152FC00EB3B63 /* DetailedPostViewController.swift in Sources */,
 				3871A0FA2821AD4400A669EA /* ProfileViewController.swift in Sources */,
 				386AEB44283033A300E62C3E /* ColorSet.swift in Sources */,
 				3871A0F82821AD1B00A669EA /* FeedViewController.swift in Sources */,

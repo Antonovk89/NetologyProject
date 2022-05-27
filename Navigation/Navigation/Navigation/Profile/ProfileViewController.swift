@@ -10,7 +10,8 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     
-    private let post:[Post] = Post.makePost()
+    var post:[Post] = Post.makePost()
+    
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
@@ -66,6 +67,7 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomPostTableViewCell.identifire, for: indexPath) as! CustomPostTableViewCell
             cell.setupCell(post[indexPath.row])
             cell.selectionStyle = .none
+            cell.postDelegate = self
             return cell
         }
     }
@@ -93,6 +95,63 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 220 : 0
+    }
+}
+
+//  MARK: - Расширение для делегата
+protocol CustomPostTableViewCellDelegate {
+    func addLikes(likesInLabel: String) -> String
+    func showPhoto(viewsInLabel: String, postImage: UIImageView, postDescription: UILabel ) -> String
+    
+}
+
+extension ProfileViewController: CustomPostTableViewCellDelegate {
+    
+    //  Функция показа описания при тапе на Фото
+    
+    func showPhoto(viewsInLabel: String, postImage: UIImageView, postDescription: UILabel) -> String {
+        
+        let detailedPostVC = DetailedPostViewController()
+        
+        self.navigationController?.present(detailedPostVC, animated: true)
+        detailedPostVC.postImageView.image = postImage.image
+        detailedPostVC.descriptionLabel.text = postDescription.text
+        
+        let viewForDataFromeCell: UIView = {
+            let view = UIView()
+            view.backgroundColor = .black
+            view.alpha = 1
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+
+      lazy var zoomImageView: UIView = {
+            var view = UIView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.contentMode = .scaleAspectFit
+            view.alpha = 1
+            return view
+        }()
+        
+        
+        func addViews(viewsInLabel: String) -> String {
+            let views = (Int(viewsInLabel) ?? 0) + 1
+            let viewsInLabel: String
+            viewsInLabel = "\(views)"
+            return viewsInLabel
+        }
+        return addViews(viewsInLabel: viewsInLabel)
+    }
+    
+    @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        sender.view?.removeFromSuperview()
+    }
+    
+   
+    func addLikes(likesInLabel: String) -> String {
+        let likes = (Int(likesInLabel) ?? 0) + 1
+        let likesInLabel = "Likes:\(likes)"
+        return likesInLabel
     }
 }
 
