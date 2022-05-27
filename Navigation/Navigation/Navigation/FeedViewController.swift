@@ -28,6 +28,5 @@ class FeedViewController: UIViewController {
         lazy var vcPost = PostViewController()
         navigationController?.pushViewController(vcPost, animated: true)
         vcPost.titlePost = post
-        
     }
 }

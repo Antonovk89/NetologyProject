@@ -72,42 +72,42 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     @objc func tapImageAction() {
         print("tap")
         self.startingFrame = photosImageView.superview?.convert(photosImageView.frame, to: nil)
-                zoomingImageView = UIImageView(frame: startingFrame!)
-                zoomingImageView.backgroundColor = .white
-                zoomingImageView.image = photosImageView.image
-                zoomingImageView.frame = photosImageView.frame
-                zoomingImageView.contentMode = .scaleAspectFit
-                if let keyWindow = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).flatMap({ $0.windows }).first(where: { $0.isKeyWindow }) {
-                    imageBackgroundView = UIView(frame: keyWindow.frame)
-                    imageBackgroundView.backgroundColor = .black
-                    imageBackgroundView.alpha = 0.3
-                    closeButton.isUserInteractionEnabled = true
-
-                    setupBack()
-                    setupCloseButton()
-                    [imageBackgroundView,closeButton , zoomingImageView].forEach({keyWindow.addSubview($0)})
-
-                    NSLayoutConstraint.activate([
-                        self.closeButton.topAnchor.constraint(equalTo: self.imageBackgroundView.safeAreaLayoutGuide.topAnchor, constant: 16),
-                        self.closeButton.trailingAnchor.constraint(equalTo:
-                                                                    self.imageBackgroundView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-                        self.closeButton.widthAnchor.constraint(equalToConstant: 40),
-                        self.closeButton.heightAnchor.constraint(equalToConstant: 40)
-                    ])
-
-                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut) {
-                        self.imageBackgroundView.alpha = 0.8
-
-                        self.zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: self.imageBackgroundView.frame.height / 3)
-                        self.zoomingImageView.center = keyWindow.center
-                    } completion: { _ in }
-
-                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut) {
-                        self.closeButton.alpha = 1
-                    } completion: { _ in }
-                }
-            }
-
+        zoomingImageView = UIImageView(frame: startingFrame!)
+        zoomingImageView.backgroundColor = .white
+        zoomingImageView.image = photosImageView.image
+        zoomingImageView.frame = photosImageView.frame
+        zoomingImageView.contentMode = .scaleAspectFit
+        if let keyWindow = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).flatMap({ $0.windows }).first(where: { $0.isKeyWindow }) {
+            imageBackgroundView = UIView(frame: keyWindow.frame)
+            imageBackgroundView.backgroundColor = .black
+            imageBackgroundView.alpha = 0.3
+            closeButton.isUserInteractionEnabled = true
+            
+            setupBack()
+            setupCloseButton()
+            [imageBackgroundView,closeButton , zoomingImageView].forEach({keyWindow.addSubview($0)})
+            
+            NSLayoutConstraint.activate([
+                self.closeButton.topAnchor.constraint(equalTo: self.imageBackgroundView.safeAreaLayoutGuide.topAnchor, constant: 16),
+                self.closeButton.trailingAnchor.constraint(equalTo:
+                                                            self.imageBackgroundView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+                self.closeButton.widthAnchor.constraint(equalToConstant: 40),
+                self.closeButton.heightAnchor.constraint(equalToConstant: 40)
+            ])
+            
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut) {
+                self.imageBackgroundView.alpha = 0.8
+                
+                self.zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: self.imageBackgroundView.frame.height / 3)
+                self.zoomingImageView.center = keyWindow.center
+            } completion: { _ in }
+            
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut) {
+                self.closeButton.alpha = 1
+            } completion: { _ in }
+        }
+    }
+    
     @objc private func closeAvatarAction() {
         UIView.animate(withDuration: 0.3,
                        delay: 0.0,
@@ -131,7 +131,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupLayout() {
-    
+        
         [photosImageView] .forEach({contentView.addSubview($0)})
         
         NSLayoutConstraint.activate([

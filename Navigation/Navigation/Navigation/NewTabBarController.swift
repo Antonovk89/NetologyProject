@@ -11,7 +11,7 @@ class NewTabBarController: UITabBarController {
     lazy var feedVC = FeedViewController()
     lazy var profileVC = LogInViewController()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupControllers()
@@ -32,7 +32,6 @@ class NewTabBarController: UITabBarController {
         feedVC.tabBarItem.image = UIImage(systemName: "newspaper.fill")
         feedVC.tabBarItem.title = "Лента"
         feedVC.navigationItem.title = "Лента"
-        
         viewControllers = [profileNC, feedNC]
     }
 }

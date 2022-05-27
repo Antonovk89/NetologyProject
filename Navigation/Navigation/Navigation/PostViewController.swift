@@ -27,5 +27,4 @@ class PostViewController: UIViewController {
         vcInfo.title = "Информация"
         present(vcInfo, animated: true)
     }
-    
 }

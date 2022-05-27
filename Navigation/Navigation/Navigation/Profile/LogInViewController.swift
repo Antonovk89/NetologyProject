@@ -82,8 +82,6 @@ class LogInViewController: UIViewController {
         return stackViewLogPass
     }()
     
-    
-    
     lazy var logInButton:UIButton = {
         let loginButton = UIButton()
         loginButton.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +92,7 @@ class LogInViewController: UIViewController {
     }()
     
     lazy var messageLabel:UILabel = {
-       let lable = UILabel()
+        let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.numberOfLines = 0
         return lable
@@ -119,7 +117,6 @@ class LogInViewController: UIViewController {
         }
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         nc.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -131,7 +128,6 @@ class LogInViewController: UIViewController {
         nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
     
     @objc func kbdShow(notification: NSNotification) {
         if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
@@ -145,7 +141,6 @@ class LogInViewController: UIViewController {
         scrollView.contentInset = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
-    
     
     func setupScrollView() {
         view.addSubview(scrollView)
@@ -216,21 +211,21 @@ class LogInViewController: UIViewController {
             loginVk.text == login && passwordVk.text == password ? navigationController?.pushViewController(profileVC, animated: true) : logPassAlert()
         }
     }
-        func logPassAlert() {
-            lazy var validationAlert = UIAlertController(title: "Не правильный логин или пароль!", message: nil, preferredStyle: .alert)
-            lazy var okAction = UIAlertAction(title: "Ok", style: .default) {_ -> Void in
-                self.dismiss(animated: true)
-            }
-            validationAlert.addAction(okAction)
-            present(validationAlert, animated: true, completion: nil)
+    func logPassAlert() {
+        lazy var validationAlert = UIAlertController(title: "Не правильный логин или пароль!", message: nil, preferredStyle: .alert)
+        lazy var okAction = UIAlertAction(title: "Ok", style: .default) {_ -> Void in
+            self.dismiss(animated: true)
         }
-        
-        func redTextField() {
-           loginVk.textColor = .red
-            passwordVk.textColor = .red
-        }
-
-
+        validationAlert.addAction(okAction)
+        present(validationAlert, animated: true, completion: nil)
+    }
+    
+    func redTextField() {
+        loginVk.textColor = .red
+        passwordVk.textColor = .red
+    }
+    
+    
     func setupMessageLabel() {
         contentView.addSubview(messageLabel)
         messageLabel.topAnchor.constraint(equalTo: stackViewLogPass.bottomAnchor, constant: 2).isActive = true
@@ -248,7 +243,7 @@ extension LogInViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let text = (passwordVk.text ?? "") + string
         let res: String
-
+        
         if range.length == 1 {
             let end = text.index(text.startIndex, offsetBy: text.count - 1)
             res = String(text[text.startIndex..<end])
@@ -272,9 +267,8 @@ extension String {
 }
 
 public extension UIView {
-
+    
     func shake(count : Float = 4,for duration : TimeInterval = 0.5,withTranslation translation : Float = 5) {
-
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.repeatCount = count

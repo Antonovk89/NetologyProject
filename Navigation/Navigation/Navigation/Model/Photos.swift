@@ -16,7 +16,7 @@ struct Photos {
     static func makePhotosModel() -> [Photos] {
         var images = [Photos]()
         for i in 0...19 {
-        images.append(Photos(image: UIImage(named: "image\(i)")!))
+            images.append(Photos(image: UIImage(named: "image\(i)")!))
         }
         return images
     }

@@ -9,19 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    
     var post:[Post] = Post.makePost()
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            self.navigationController?.navigationBar.isHidden = true
-        }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        layout()
-    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -43,6 +31,18 @@ class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        layout()
+    }
+    
+    
 }
 
 // MARK: - UITableViewDataSourse
@@ -98,16 +98,13 @@ extension ProfileViewController: UITableViewDelegate {
     }
 }
 
-//  MARK: - Расширение для делегата
+//  MARK: - Delegate
 protocol CustomPostTableViewCellDelegate {
     func addLikes(likesInLabel: String) -> String
     func showPhoto(viewsInLabel: String, postImage: UIImageView, postDescription: UILabel ) -> String
-    
 }
 
 extension ProfileViewController: CustomPostTableViewCellDelegate {
-    
-    //  Функция показа описания при тапе на Фото
     
     func showPhoto(viewsInLabel: String, postImage: UIImageView, postDescription: UILabel) -> String {
         
@@ -116,23 +113,6 @@ extension ProfileViewController: CustomPostTableViewCellDelegate {
         self.navigationController?.present(detailedPostVC, animated: true)
         detailedPostVC.postImageView.image = postImage.image
         detailedPostVC.descriptionLabel.text = postDescription.text
-        
-        let viewForDataFromeCell: UIView = {
-            let view = UIView()
-            view.backgroundColor = .black
-            view.alpha = 1
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
-
-      lazy var zoomImageView: UIView = {
-            var view = UIView()
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.contentMode = .scaleAspectFit
-            view.alpha = 1
-            return view
-        }()
-        
         
         func addViews(viewsInLabel: String) -> String {
             let views = (Int(viewsInLabel) ?? 0) + 1
@@ -147,7 +127,6 @@ extension ProfileViewController: CustomPostTableViewCellDelegate {
         sender.view?.removeFromSuperview()
     }
     
-   
     func addLikes(likesInLabel: String) -> String {
         let likes = (Int(likesInLabel) ?? 0) + 1
         let likesInLabel = "Likes:\(likes)"
