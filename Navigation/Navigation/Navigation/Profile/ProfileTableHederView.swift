@@ -162,36 +162,26 @@ class ProfileHeaderView: UIView {
         heightProfileView = profileImage.heightAnchor.constraint(equalToConstant: 120)
         
         NSLayoutConstraint.activate([
-            topProfileView, leadingProfileView, widthProfileView, heightProfileView
-        ])
+            topProfileView, leadingProfileView, widthProfileView, heightProfileView,
         
-        NSLayoutConstraint.activate([
             profileBackgroundView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             profileBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             profileBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            profileBackgroundView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height)
-        ])
+            profileBackgroundView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
         
-        NSLayoutConstraint.activate([
             textName.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             textName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            textName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 16)
-        ])
+            textName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 16),
         
-        NSLayoutConstraint.activate([
             textStatus.bottomAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: -18),
             textStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            textStatus.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 16)
-        ])
+            textStatus.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 16),
         
-        NSLayoutConstraint.activate([
             setupStatusButton.topAnchor.constraint(equalTo: textStatus.bottomAnchor, constant: 32),
             setupStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             setupStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            setupStatusButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+            setupStatusButton.heightAnchor.constraint(equalToConstant: 50),
         
-        NSLayoutConstraint.activate([
             closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -32),
             closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 32)])
     }

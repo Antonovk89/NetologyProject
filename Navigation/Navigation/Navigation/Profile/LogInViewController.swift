@@ -88,6 +88,7 @@ class LogInViewController: UIViewController {
         loginButton.backgroundColor = hexStringToUIColor(hex: "#4885CC")
         loginButton.layer.cornerRadius = 10
         loginButton.setTitle("Log in", for: .normal)
+        logInButton.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return loginButton
     }()
     
@@ -100,12 +101,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad(){
         self.navigationController?.navigationBar.isHidden = true
-        setupScrollView()
-        setupContentView()
-        setupLogo()
-        setupStackView()
-        setupLoginButton()
-        setupMessageLabel()
+        layout()
         passwordVk.delegate = self
     }
     private func checkValidation(password: String) {
@@ -142,65 +138,121 @@ class LogInViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
     
-    func setupScrollView() {
+    func layout() {
         view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+//        contentView.addSubview(logoVk)
+//        contentView.addSubview(loginVk)
+//        contentView.addSubview(passwordVk)
+//        contentView.addSubview(stackViewLogPass)
+//        contentView.addSubview(logInButton)
+//        contentView.addSubview(messageLabel)
+        [logoVk, loginVk, passwordVk, stackViewLogPass, logInButton, messageLabel] .forEach({contentView.addSubview($0)})
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            logoVk.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            logoVk.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 120),
+            logoVk.heightAnchor.constraint(equalToConstant: 100),
+            logoVk.widthAnchor.constraint(equalToConstant: 100),
+            
+            loginVk.topAnchor.constraint(equalTo: stackViewLogPass.topAnchor, constant: 0),
+            loginVk.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor, constant: 0),
+            loginVk.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor, constant: 0),
+            loginVk.heightAnchor.constraint(equalToConstant: 50),
+            
+            passwordVk.topAnchor.constraint(equalTo: loginVk.bottomAnchor, constant: 0),
+            passwordVk.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor, constant: 0),
+            passwordVk.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor, constant: 0),
+            passwordVk.heightAnchor.constraint(equalToConstant: 50),
+            
+            stackViewLogPass.topAnchor.constraint(equalTo: logoVk.bottomAnchor, constant: 120),
+            stackViewLogPass.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            stackViewLogPass.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stackViewLogPass.heightAnchor.constraint(equalToConstant: 100),
+            
+            logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            logInButton.heightAnchor.constraint(equalToConstant: 50),
+            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            
+            messageLabel.topAnchor.constraint(equalTo: stackViewLogPass.bottomAnchor, constant: 2),
+            messageLabel.bottomAnchor.constraint(equalTo: logInButton.topAnchor, constant: 2),
+            messageLabel.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor),
+            messageLabel.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor),
+            messageLabel.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
     
-    func setupContentView() {
-        scrollView.addSubview(contentView)
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-    }
-    
-    func setupLogo() {
-        contentView.addSubview(logoVk)
-        logoVk.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        logoVk.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
-        logoVk.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        logoVk.widthAnchor.constraint(equalToConstant: 100).isActive = true
-    }
-    
-    func setupLogin() {
-        contentView.addSubview(loginVk)
-        loginVk.topAnchor.constraint(equalTo: stackViewLogPass.topAnchor, constant: 0).isActive = true
-        loginVk.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor, constant: 0).isActive = true
-        loginVk.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor, constant: 0).isActive = true
-        loginVk.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
-    func setupPassword() {
-        contentView.addSubview(passwordVk)
-        passwordVk.topAnchor.constraint(equalTo: loginVk.bottomAnchor, constant: 0).isActive = true
-        passwordVk.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor, constant: 0).isActive = true
-        passwordVk.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor, constant: 0).isActive = true
-        passwordVk.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
-    func setupStackView() {
-        contentView.addSubview(stackViewLogPass)
-        stackViewLogPass.topAnchor.constraint(equalTo: logoVk.bottomAnchor, constant: 120).isActive = true
-        stackViewLogPass.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        stackViewLogPass.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        stackViewLogPass.heightAnchor.constraint(equalToConstant: 100).isActive = true
-    }
-    
-    func setupLoginButton() {
-        contentView.addSubview(logInButton)
-        logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        logInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        logInButton.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
-    }
+//    func setupContentView() {
+//        scrollView.addSubview(contentView)
+//        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+//        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+//        contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+//        contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+//        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+//    }
+//
+//    func setupLogo() {
+//        contentView.addSubview(logoVk)
+//        logoVk.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+//        logoVk.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
+//        logoVk.heightAnchor.constraint(equalToConstant: 100).isActive = true
+//        logoVk.widthAnchor.constraint(equalToConstant: 100).isActive = true
+//    }
+//
+//    func setupLogin() {
+//        contentView.addSubview(loginVk)
+//        loginVk.topAnchor.constraint(equalTo: stackViewLogPass.topAnchor, constant: 0).isActive = true
+//        loginVk.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor, constant: 0).isActive = true
+//        loginVk.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor, constant: 0).isActive = true
+//        loginVk.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//    }
+//
+//    func setupPassword() {
+//        contentView.addSubview(passwordVk)
+//        passwordVk.topAnchor.constraint(equalTo: loginVk.bottomAnchor, constant: 0).isActive = true
+//        passwordVk.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor, constant: 0).isActive = true
+//        passwordVk.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor, constant: 0).isActive = true
+//        passwordVk.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//    }
+//
+//    func setupStackView() {
+//        contentView.addSubview(stackViewLogPass)
+//        stackViewLogPass.topAnchor.constraint(equalTo: logoVk.bottomAnchor, constant: 120).isActive = true
+//        stackViewLogPass.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+//        stackViewLogPass.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+//        stackViewLogPass.heightAnchor.constraint(equalToConstant: 100).isActive = true
+//    }
+//
+//    func setupLoginButton() {
+//        contentView.addSubview(logInButton)
+//        logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+//        logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+//        logInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//        logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+//        logInButton.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
+//    }
+//
+//    func setupMessageLabel() {
+//        contentView.addSubview(messageLabel)
+//        messageLabel.topAnchor.constraint(equalTo: stackViewLogPass.bottomAnchor, constant: 2).isActive = true
+//        messageLabel.bottomAnchor.constraint(equalTo: logInButton.topAnchor, constant: 2).isActive = true
+//        messageLabel.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor).isActive = true
+//        messageLabel.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor).isActive = true
+//        messageLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
+//    }
     
     @objc private func tapAction() {
         lazy var profileVC = ProfileViewController()
@@ -225,15 +277,6 @@ class LogInViewController: UIViewController {
         passwordVk.textColor = .red
     }
     
-    
-    func setupMessageLabel() {
-        contentView.addSubview(messageLabel)
-        messageLabel.topAnchor.constraint(equalTo: stackViewLogPass.bottomAnchor, constant: 2).isActive = true
-        messageLabel.bottomAnchor.constraint(equalTo: logInButton.topAnchor, constant: 2).isActive = true
-        messageLabel.trailingAnchor.constraint(equalTo: stackViewLogPass.trailingAnchor).isActive = true
-        messageLabel.leadingAnchor.constraint(equalTo: stackViewLogPass.leadingAnchor).isActive = true
-        messageLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
-    }
 }
 
 // MARK: - UITextFieldDelegate

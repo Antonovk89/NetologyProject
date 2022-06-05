@@ -124,24 +124,18 @@ class PhotosTableViewCell: UITableViewCell {
             photosView.topAnchor.constraint(equalTo: contentView.topAnchor),
             photosView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             photosView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            photosView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
+            photosView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         
-        NSLayoutConstraint.activate([
             photosLabel.topAnchor.constraint(equalTo: photosView.topAnchor, constant: firstInset),
             photosLabel.leadingAnchor.constraint(equalTo: photosView.leadingAnchor, constant: firstInset),
-            photosLabel.trailingAnchor.constraint(equalTo: photosView.trailingAnchor, constant: -firstInset)
-        ])
+            photosLabel.trailingAnchor.constraint(equalTo: photosView.trailingAnchor, constant: -firstInset),
         
-        NSLayoutConstraint.activate([
             arrowView.topAnchor.constraint(equalTo: photosView.topAnchor, constant: firstInset),
             arrowView.centerYAnchor.constraint(equalTo: photosLabel.centerYAnchor),
             arrowView.trailingAnchor.constraint(equalTo: photosView.trailingAnchor, constant: -firstInset),
             arrowView.widthAnchor.constraint(equalToConstant: 24),
-            arrowView.heightAnchor.constraint(equalToConstant: 28)
-        ])
-        
-        NSLayoutConstraint.activate([
+            arrowView.heightAnchor.constraint(equalToConstant: 28),
+       
             stackView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: firstInset),
             stackView.leadingAnchor.constraint(equalTo: photosView.leadingAnchor, constant: firstInset),
             stackView.trailingAnchor.constraint(equalTo: photosView.trailingAnchor, constant: -firstInset),
